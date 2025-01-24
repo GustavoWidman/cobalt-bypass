@@ -5,20 +5,16 @@ services:
             args:
                 HOST: 0.0.0.0
                 PORT: 8080
-                TURNSTILE_SOLVER_HOST: turnstile-solver
-                TURNSTILE_SOLVER_PORT: 3000
+                TURNSTILE_SOLVER_HOST: 100.126.105.31
+                TURNSTILE_SOLVER_PORT: 12847
                 COBALT_API_URL: https://api.cobalt.tools # WITHOUT TRAILING SLASH
         image: cobalt-bypass
         container_name: cobalt-bypass
         restart: unless-stopped
-        ports:
-            - 8080:8080
+        #ports:
+        #    - 8080:8080
 
-    turnstile-solver:
-        image: zfcsoftware/cf-clearance-scraper:latest
-        container_name: cobalt-turnstile-solver
-        restart: unless-stopped
-        environment:
-            timeOut: 60000
-            browserLimit: 20
-            PORT: 3000
+networks:
+  default:
+    name: nginx
+    external: true
