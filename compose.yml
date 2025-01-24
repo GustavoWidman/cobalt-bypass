@@ -7,6 +7,7 @@ services:
                 PORT: 8080
                 TURNSTILE_SOLVER_HOST: turnstile-solver
                 TURNSTILE_SOLVER_PORT: 3000
+                COBALT_API_URL: https://api.cobalt.tools # WITHOUT TRAILING SLASH
         image: cobalt-bypass
         container_name: cobalt-bypass
         restart: unless-stopped

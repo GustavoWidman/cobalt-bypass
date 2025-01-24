@@ -7,6 +7,7 @@ ARG HOST
 ARG PORT
 ARG TURNSTILE_SOLVER_HOST
 ARG TURNSTILE_SOLVER_PORT
+ARG COBALT_API_URL
 
 COPY ./Cargo.lock ./Cargo.lock
 COPY ./Cargo.toml ./Cargo.toml
@@ -17,6 +18,7 @@ RUN echo "HOST=$HOST" > .env
 RUN echo "PORT=$PORT" >> .env
 RUN echo "TURNSTILE_SOLVER_HOST=$TURNSTILE_SOLVER_HOST" >> .env
 RUN echo "TURNSTILE_SOLVER_PORT=$TURNSTILE_SOLVER_PORT" >> .env
+RUN echo "COBALT_API_URL=$COBALT_API_URL" >> .env
 
 RUN cargo build --release
 

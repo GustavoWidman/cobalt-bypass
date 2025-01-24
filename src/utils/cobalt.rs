@@ -58,8 +58,10 @@ pub async fn cobalt(url: String) -> Result<CobaltResponse, CobaltError> {
 
     debug!("Turnstile parsed: {:?}", turnstile_response);
 
+    let cobalt_api_url = dotenv!("COBALT_API_URL");
+
     let token_response = client
-        .post("https://api.cobalt.tools/session")
+        .post(format!("{}/session", cobalt_api_url))
         .header("cf-turnstile-response", turnstile_response.token)
         .send()
         .await
@@ -97,7 +99,7 @@ pub async fn cobalt(url: String) -> Result<CobaltResponse, CobaltError> {
     debug!("Session parsed: {:?}", token_response);
 
     let cobalt_response = client
-        .post("https://api.cobalt.tools/")
+        .post(format!("{}/", cobalt_api_url))
         .header("Accept", "application/json")
         .header("Content-Type", "application/json")
         .bearer_auth(token_response.token)
