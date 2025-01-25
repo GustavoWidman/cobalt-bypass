@@ -6,7 +6,6 @@ use utils::Logger;
 extern crate dotenvy_macro;
 
 mod api;
-pub mod consts;
 pub mod utils;
 
 #[actix_web::main]

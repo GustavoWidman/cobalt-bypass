@@ -3,7 +3,6 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Deserialize, Serialize)]
 pub struct TurnstileResponse {
     pub token: String,
-    pub code: u32,
 }
 
 #[derive(Debug, Deserialize, Serialize)]

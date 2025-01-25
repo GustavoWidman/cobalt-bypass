@@ -12,15 +12,14 @@ pub async fn cobalt(url: String) -> Result<CobaltResponse, CobaltError> {
 
     let turnstile_solver_host = dotenv!("TURNSTILE_SOLVER_HOST");
     let turnstile_solver_port = dotenv!("TURNSTILE_SOLVER_PORT");
+    let turnstile_target_url = dotenv!("TURNSTILE_TARGET_URL");
     let turnstile_response = client
         .post(format!(
-            "http://{}:{}/cf-clearance-scraper",
+            "http://{}:{}/",
             turnstile_solver_host, turnstile_solver_port
         ))
         .json(&serde_json::json!({
-            "url": "https://challenges.cobalt.tools/",
-            "siteKey": &crate::consts::TURNSTILE_KEY,
-            "mode": "turnstile-min",
+            "url": turnstile_target_url,
         }))
         .send()
         .await
